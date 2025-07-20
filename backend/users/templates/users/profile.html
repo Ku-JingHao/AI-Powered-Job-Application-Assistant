@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2>Profile</h2>
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline-info">Back to Dashboard</a>
+                </div>
+                <div class="card-body">
+                    <div class="media d-flex mb-4">
+                        <img class="rounded-circle account-img mr-3" src="{{ user.profile.profile_picture.url }}" style="width: 150px; height: 150px; object-fit: cover;">
+                        <div class="media-body ml-4 d-flex flex-column justify-content-center">
+                            <h2 class="account-heading">{{ user.username }}</h2>
+                            <p class="text-secondary mb-0">{{ user.email }}</p>
+                            {% if user.profile.job_title %}
+                            <p class="text-secondary mb-0">{{ user.profile.job_title }}{% if user.profile.company %} at {{ user.profile.company }}{% endif %}</p>
+                            {% endif %}
+                            {% if user.profile.location %}
+                            <p class="text-secondary mb-0">{{ user.profile.location }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Profile Information</legend>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %} 
