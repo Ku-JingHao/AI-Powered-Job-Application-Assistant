@@ -51,12 +51,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Logout function
   const logout = () => {
-    // Remove tokens from localStorage
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('user_data');
     
-    // Remove auth header
     delete axios.defaults.headers.common['Authorization'];
     
     setIsAuthenticated(false);
@@ -71,4 +69,4 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 };
 
 // Custom hook to use auth context
-export const useAuth = () => useContext(AuthContext); 
+export const useAuth = () => useContext(AuthContext);

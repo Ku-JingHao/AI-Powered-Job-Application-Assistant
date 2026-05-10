@@ -13,7 +13,7 @@ import MockInterview from './pages/MockInterview';
 import Resume from './pages/ResumeTailoring';
 import InterviewChatbot from './pages/InterviewChatbot';
 import { RecentActivityProvider } from './contexts/RecentActivityContext';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import reportWebVitals from './reportWebVitals';
 
 const theme = createTheme({
